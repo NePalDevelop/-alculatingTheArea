@@ -4,14 +4,14 @@ namespace СalculatingTheArea
     internal class Triangle : IFlatFigure
     {
         private readonly string _name = "Triangle";
-        private List <double> _sides = new() { default, default, default };
+        private double [] _sides = new double [3]{ default, default, default };
         private bool _isCorrect = false;
 
         public string Name { get => _name; }
 
         public bool IsCorrect { get => _isCorrect; }
 
-        public List<double> Sides { get => _sides; }
+        public double [] Sides { get => _sides; }
 
         public double Area
         {
@@ -19,7 +19,7 @@ namespace СalculatingTheArea
             {
                 if (IsCorrect)
                 {
-                    var h_perimeter = Sides.Take(3).Sum()/2;
+                    var h_perimeter = Sides.Sum()/2;
                     var square = h_perimeter;
                     for (int i = 0; i < 3; i++)
                         square = square*(h_perimeter - Sides[i]);
@@ -49,6 +49,22 @@ namespace СalculatingTheArea
                 
             }
             _isCorrect = IsCorrect && (Sides[0] < Sides[1]+Sides[2]) && (Sides[1] < Sides[0] + Sides[2]) && (Sides[2] < Sides[0] + Sides[1]);
+        }
+
+        public bool IsRectangular()
+        {
+            double hypotenuse, cathet1, cathet2;
+
+            if (IsCorrect)
+            {
+                hypotenuse = Math.Max(Sides[0], (Math.Max(Sides[1], Sides[2])));
+                cathet1 = (Sides[0] == hypotenuse) ? Sides[1] : Sides[0];
+                cathet2 = (Sides[1] == hypotenuse || Sides[1] == cathet1) ? Sides[2] : Sides[1];
+                return (hypotenuse * hypotenuse == cathet1 * cathet1 + cathet2 * cathet2);
+            }
+            else return false;
+
+            
         }
     }
 }
