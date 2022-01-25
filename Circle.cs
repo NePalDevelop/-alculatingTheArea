@@ -5,50 +5,36 @@ namespace СalculatingTheArea
     public class Circle : IFlatFigure
     {
         private readonly string _name = "Circle";
-        private double _radius = 0.0;
+        private double _radius = default;
+        private bool _isCorrect = false;
 
         public string Name { get => _name; }
 
-        public double Radius { get => _radius; 
-            private set
-            { 
-                if (IsCorrectData(value)) _radius = value;
-                else throw new ArgumentException("Radius must exist and have a positive value");
-            } 
-        }
+        public bool IsCorrect { get => _isCorrect; }    
 
-        public double AreaOfFigure { get
+        public double Radius { get => _radius; }
+
+        public double Area{ get
             {
-                return Math.PI * Math.Pow(Radius, 2);
+                if (IsCorrect) return Math.PI * Math.Pow(Radius, 2);
+                else return -1.0;
             }
          }
 
-        public Circle()
-        { }    
-
         public Circle(params double[] inputArray)
         {
-
-            Radius = inputArray[0];
+            SetSize(inputArray);
         }
 
 
-
-        public bool IsCorrectData(params double[] inputArray)
+        public void SetSize(params double[] inputArray)
         {
-           return !((inputArray == null || inputArray.Length == 0 || inputArray[0] < 0.0));
-        }
+            _isCorrect = !((inputArray == null || inputArray.Length == 0 || inputArray[0] < 0.0));
 
-        public bool SetNewParameters(params double[] inputArray)
-        {
-            if (!IsCorrectData(inputArray))
-                return false;
-            else
-            {
+            if (_isCorrect)
                 _radius = inputArray[0];
-            }
-            
-            return true;
+            else
+                _radius = default;
         }
     }
 }

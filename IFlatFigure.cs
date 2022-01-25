@@ -6,11 +6,11 @@ namespace СalculatingTheArea
     {
         public string Name { get;}
 
-        public double AreaOfFigure { get; }
+        public double Area { get; }
 
-        public bool IsCorrectData(params double[] parameters);
+        public bool IsCorrect { get; }     
 
-        public bool SetNewParameters(params double[] parameters);
+        public void SetSize(params double[] parameters);
                 
     }
 }

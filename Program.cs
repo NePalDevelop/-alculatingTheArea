@@ -6,14 +6,26 @@
         {
             IFlatFigure figure = new Circle();
 
-            Console.WriteLine(@"Площадь фигуры - {0} = {1} ", figure.Name, figure.AreaOfFigure);
+            if (figure.IsCorrect)
+                Console.WriteLine(@"The area of the figure - {0} = {1} ", figure.Name, figure.Area);
 
-            if (figure.SetNewParameters(8)) 
-                Console.WriteLine(@"Площадь фигуры - {0} = {1} ", figure.Name, figure.AreaOfFigure);
+            figure.SetSize(8);
+            if (figure.IsCorrect) 
+                Console.WriteLine(@"The area of the figure - {0} = {1} ", figure.Name, figure.Area);
             
             
             Circle circle = new Circle(-2);
-            Console.WriteLine(@"Площадь фигуры - {0} = {1} ", circle.Name, circle.AreaOfFigure);
+            if (circle.IsCorrect)
+                Console.WriteLine(@"The area of the figure - {0} = {1} ", circle.Name, circle.Area);
+
+            circle.SetSize(0);
+            if (circle.IsCorrect)
+                Console.WriteLine(@"The area of the figure - {0} = {1} ", circle.Name, circle.Area);
+
+            circle.SetSize(-5);
+            if (circle.IsCorrect)
+                Console.WriteLine(@"The area of the figure - {0} = {1} ", circle.Name, circle.Area);
+
         }
 
     }
