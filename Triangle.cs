@@ -1,70 +1,33 @@
 ﻿
 namespace СalculatingTheArea
 {
-    internal class Triangle : IFlatFigure
+    public class Triangle : IFlatFigure
     {
-        private readonly string _name = "Triangle";
-        private double [] _sides = new double [3]{ default, default, default };
-        private bool _isCorrect = false;
 
-        public string Name { get => _name; }
+        private double[] _sides;
 
-        public bool IsCorrect { get => _isCorrect; }
-
-        public double [] Sides { get => _sides; }
-
-        public double Area
+        public double GetArea ()
         {
-            get
-            {
-                if (IsCorrect)
-                {
-                    var h_perimeter = Sides.Sum()/2;
-                    var square = h_perimeter;
-                    for (int i = 0; i < 3; i++)
-                        square = square*(h_perimeter - Sides[i]);
-                    return Math.Sqrt(square);
-                }
-                else return -1.0;
-            }
+            var half_p = _sides.Sum() / 2;
+            return Math.Sqrt(half_p * (half_p - _sides[0])*(half_p - _sides[1]) *(half_p - _sides[2]));
+
         }
 
-        public Triangle(params double[] inputArray)
+        internal Triangle(double a, double b, double c)
         {
-            SetSize(inputArray);
+            _sides = new double [3] {a, b, c};
         }
 
 
-        public void SetSize(params double[] inputArray)
-        {
-            _isCorrect = !(inputArray == null || inputArray.Length < 3);
-
-            for  (int i = 0;  i < 3; i++)
-            {
-                _isCorrect = _isCorrect && inputArray[i] > 0;
-
-                if (_isCorrect) _sides[i] = inputArray[i];
-                
-                else _sides[i] = default;
-                
-            }
-            _isCorrect = IsCorrect && (Sides[0] < Sides[1]+Sides[2]) && (Sides[1] < Sides[0] + Sides[2]) && (Sides[2] < Sides[0] + Sides[1]);
-        }
 
         public bool IsRectangular()
         {
-            double hypotenuse, cathet1, cathet2;
 
-            if (IsCorrect)
-            {
-                hypotenuse = Math.Max(Sides[0], (Math.Max(Sides[1], Sides[2])));
-                cathet1 = (Sides[0] == hypotenuse) ? Sides[1] : Sides[0];
-                cathet2 = (Sides[1] == hypotenuse || Sides[1] == cathet1) ? Sides[2] : Sides[1];
-                return (hypotenuse * hypotenuse == cathet1 * cathet1 + cathet2 * cathet2);
-            }
-            else return false;
+            Array.Sort(_sides);
 
-            
+            return Math.Pow(_sides[0], 2) + Math.Pow(_sides[1], 2) == Math.Pow(_sides[2], 2);
+
         }
+
     }
 }
