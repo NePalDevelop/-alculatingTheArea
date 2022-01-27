@@ -1,10 +1,13 @@
-﻿
+﻿using System;
+
 namespace СalculatingTheArea
 {
     public class Triangle : IFlatFigure
     {
 
         private double[] _sides;
+
+        // Метод вычисления площади треугольника по трем сторонам
 
         public double GetArea ()
         {
@@ -13,12 +16,17 @@ namespace СalculatingTheArea
 
         }
 
+        // Конструктор класса имеет модификатор internal, чтобы исключить возможность
+        // создания объекта с недопустимыми параметрами в обход метода
+        // CreateTriangle из класса FigureFactory,
+        // где создание объекта сопровождается неоходимыми проверками
         internal Triangle(double a, double b, double c)
         {
             _sides = new double [3] {a, b, c};
         }
 
 
+        // Метод проверки прямоугольности треугольника
 
         public bool IsRectangular()
         {
