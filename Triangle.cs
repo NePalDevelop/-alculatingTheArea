@@ -9,10 +9,10 @@ namespace СalculatingTheArea
 
         // Метод вычисления площади треугольника по трем сторонам
 
-        public double GetArea ()
+        public double GetArea()
         {
             var half_p = _sides.Sum() / 2;
-            return Math.Sqrt(half_p * (half_p - _sides[0])*(half_p - _sides[1]) *(half_p - _sides[2]));
+            return Math.Sqrt(half_p * (half_p - _sides[0]) * (half_p - _sides[1]) * (half_p - _sides[2]));
 
         }
 
@@ -22,7 +22,7 @@ namespace СalculatingTheArea
         // где создание объекта сопровождается неоходимыми проверками
         internal Triangle(double a, double b, double c)
         {
-            _sides = new double [3] {a, b, c};
+            _sides = new double[3] { a, b, c };
         }
 
 
