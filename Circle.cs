@@ -4,7 +4,7 @@ namespace СalculatingTheArea
 {
     sealed public class Circle : IFlatFigure
     {
-
+        
         private double _radius;
 
         // Метод вычисления площади созданного круга

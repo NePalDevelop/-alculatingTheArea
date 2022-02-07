@@ -36,9 +36,9 @@ class Program
             if (figure != null)
             {
                 figures.Add(figure);
-
             }
         }
+
 
         // Вычисление площади фигур безотносительно их конкретного типа,
         // используя метод GetArea, определенный в интерфейсе IFlatFigure и
